@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 138, in <module>
+    CheckSpeed(speed) #檢查速度
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 132, in CheckSpeed
+    raise Exception("速度太慢了!") # 拋出 Exception 型別例外
+Exception: 速度太慢了!
+Traceback (most recent call last):
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 138, in <module>
+    CheckSpeed(speed) #檢查速度
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 134, in CheckSpeed
+    raise Exception("已經超速了!") # 拋出 Exception 型別例外
+Exception: 已經超速了!
+Traceback (most recent call last):
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 138, in <module>
+    CheckSpeed(speed) #檢查速度
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 132, in CheckSpeed
+    raise Exception("速度太慢了!") # 拋出 Exception 型別例外
+Exception: 速度太慢了!
+Traceback (most recent call last):
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 138, in <module>
+    CheckSpeed(speed) #檢查速度
+  File "C:/Users/mikal/PycharmProjects/PythonBible/ch8/test1_try_except.py", line 134, in CheckSpeed
+    raise Exception("已經超速了!") # 拋出 Exception 型別例外
+Exception: 已經超速了!
