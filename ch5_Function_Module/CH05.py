@@ -113,17 +113,17 @@
 #   print(r1.sample('abdfrtq',3), end=',') # ['b', 'd', 't']
 #   print()
 # # Sample 2 ---------------------------------------
-# import random as r
-# list1 = r.sample(range(1,50), 6)
-# # special = list1.pop() # pop() 取出最後一個元素，並刪除
-# list1.sort()
-# print("本期大樂透中獎號碼為：", end="")
-# for i in range(0,6):
-#    if i == 5:
-#        print(str(list1[i]))
-#    else:
-#        print(str(list1[i]), end=", ")
-# # # print("本期大樂透特別號為：" + str(special))
+import random as r
+list1 = r.sample(range(1,50), 6)
+# special = list1.pop() # pop() 取出最後一個元素，並刪除
+list1.sort()
+print("本期大樂透中獎號碼為：", end="")
+for i in range(0,6):
+   if i == 5:
+       print(str(list1[i]))
+   else:
+       print(str(list1[i]), end=", ")
+# print("本期大樂透特別號為：" + str(special))
 # # # Sample 3 威力彩 ----------------------------------
 # import random
 # list2 = random.sample(range(1,9),1)   # random.sample
@@ -175,11 +175,11 @@
 # print(type(a),a)
 # # Ans: <class 'str'> 0o310
 # max() & min() for list --------------------------------
-list1=[1,2,3,4,5]
-a=max(list1)    # max() for list
-print(type(a),a)     #  <class 'int'> 5
-a = min(list1)  #min()  for list
-print(type(a),a)     #  <class 'int'> 1
+# list1=[1,2,3,4,5]
+# a=max(list1)    # max() for list
+# print(type(a),a)     #  <class 'int'> 5
+# a = min(list1)  #min()  for list
+# print(type(a),a)     #  <class 'int'> 1
 # # pow() & id()--------------------------------------------------
 # x = 3
 # y = 4

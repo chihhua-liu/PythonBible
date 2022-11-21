@@ -2675,7 +2675,7 @@
 
 
 # 檔案的處理 : 1 文字檔 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# open() 開啟黨俺
+# demo91 open() 開啟黨俺
 # file1 = open('data/Python_Introduction', encoding='UTF-8')
 # print(type(file1))         # <class '_io.TextIOWrapper'>
 # readme_txt = file1.read()  #readme_txt is string
@@ -2773,4 +2773,1243 @@
 # print(xiaoming._age)
 
 
-# Day 5 ------------------------------------------------------------------------
+# Day 5 -------------------------------
+# demo92-------------------------------
+# myOutputfile = open('data/demo92.txt', 'w')
+# linesToWrite = ["POOP\n", "BDPY\n", "PYKT\n", "...\n", "AIOCV\n"]
+# myOutputfile.writelines(linesToWrite)
+# myOutputfile.close()
+#
+# for i in range(0, 10):
+#     myOutputfile2 = open('data/demo92.txt', 'a', encoding='UTF-8')
+#     nextLine = ["加入一些在最後面\n"]
+#     myOutputfile2.writelines(nextLine)
+#     myOutputfile2.close()
+
+# demo93 使用 glob 處理目錄: glob.glob----------------------------------
+# import os
+# from glob import glob
+#
+# #paths = "c:\\windows"
+# paths = "c:/windows"
+# print(type(paths))                # <class 'str'>
+# allDlls = os.path.join(paths, "*/*.dll")   # <class 'str'> c:/windows\*/*.dll
+#
+# print(len(allDlls))   # 18
+#
+# print(type(allDlls), allDlls)
+#
+# for dll in glob(allDlls):   # get c:\\windows 所有 dll 路徑(含子目錄下) : ex: c:/windows\apppatch\AcRes.dll
+#     print(dll)
+#
+# allExes = os.path.join(paths, "*/*.exe") # get 所有 exe 路徑 : ex:
+# for exe in glob(allExes):
+#     print(exe)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import os
+# import glob
+#
+# # paths = "c:\\windows"
+# paths = "c:/windows"
+# print(type(paths))
+# allDlls = os.path.join(paths, "**/*.dll")
+# print(len(allDlls))  # 19
+# print(type(allDlls), allDlls)
+# for dll in glob.glob(allDlls):
+#     print(dll)
+#
+# allExes = os.path.join(paths, "*/*.exe")
+# for exe in glob.glob(allExes):
+#     print(exe)
+
+# files = os.path.join(paths,"*/amd*.*")
+# for f in glob.glob(files):
+#     print(f)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import os
+# import glob
+#
+# # paths = "c:\\windows"
+# paths = "c:/windows"
+# print(type(paths))
+# allDlls = os.path.join(paths, "**/*.dll")
+# print(len(allDlls))
+# print(type(allDlls), allDlls)
+# for dll in glob.glob(allDlls):
+#     print(dll)
+#
+# allExes = os.path.join(paths, "*/*.exe")
+# for exe in glob.glob(allExes):
+#     print(exe)
+#
+# files = os.path.join(paths,"*/amd*.*")
+# for f in glob.glob(files):
+#     print(f)
+#
+# files2 = os.path.join(paths,"*/[abc]*.*")
+# for f in glob.glob(files2):
+#     print(f)
+#
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import glob
+# import os
+#
+# paths = 'c:\\windows'
+# paths2 = 'c:/windows'
+# allDlls = os.path.join(paths, '*/*.dll')
+# allDlls2 = os.path.join(paths, '**/*.dll')
+# allDlls3 = os.path.join(paths2, '*/*.dll')
+# print(allDlls)
+# print(allDlls2)
+# print(allDlls3)
+# d1 = [d for d in glob.glob(allDlls)]
+# d2 = [d for d in glob.glob(allDlls2)]
+# d3 = [d for d in glob.glob(allDlls3)]
+# print(len(d1))
+# print(len(d2))
+# print(len(d3))
+# print(d1 == d2)
+# print(d1 == d3)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import glob
+# import os
+#
+# paths = 'c:\\windows'
+# paths2 = 'c:/windows'
+# # allDlls = os.path.join(paths, '*/*.dll')
+# # allDlls2 = os.path.join(paths, '**/*.dll')
+# # allDlls3 = os.path.join(paths2, '*/*.dll')
+# allDlls = os.path.join(paths, '*.dll')
+# allDlls2 = os.path.join(paths, '*.dll')
+# allDlls3 = os.path.join(paths2, '*.dll')
+#
+# print(allDlls)
+# print(allDlls3)
+# d1 = [d for d in glob.glob(allDlls)]
+# d2 = [d for d in glob.glob(allDlls2)]
+# d3 = [d for d in glob.glob(allDlls3)]
+# print(len(d1))
+# print(len(d2))
+# print(len(d3))
+# print(d1 == d2)
+# print(d1 == d3)
+# print(d1[:5])
+# print(d2[:5])
+# print(d3[:5])
+#
+# demo94 os.walk~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import os
+# from pprint import pprint
+#
+# myPath = "c:/windows/system32"
+#
+# for currentFolder, subFolders, fileNames in os.walk(myPath):
+#     print('---- currentFolder ------------')
+#     print(currentFolder)           # c:/windows/system32 下的所有目錄，含c:/windows/system32
+#     print('---- subFolders ------------')
+#     pprint(subFolders)             # currentFolder的次目錄 :
+#     print('---- fileNames ------------')
+#     for f in fileNames:            # c:/windows/system32 下的所有檔案
+#         pprint(f"...{f}")
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# https://en.wikipedia.org/wiki/List_of_file_signatures
+# #
+# images = ['./data/image1.jpg', './data/image2.jpg']
+#
+# for image in images:
+#     print(image)
+#     with open(image, "rb") as imageFile:
+#         index = 1
+#         byte = imageFile.read(1)
+#         while byte != "" and index < 9:
+#             print(byte)
+#             x = int.from_bytes(byte, byteorder='little')   # 把bytes类型的变量x，转化为十进制整数
+#             print("[%d]%s,%s" % (index, str(hex(x)),str(x)))
+#             byte = imageFile.read(1)
+#             index += 1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# images = ['./data/image1.jpg', './data/image2.jpg']
+#
+# for image in images:
+#     print(image)
+#     with open(image, "rb") as imageFile:
+#         index = 1
+#         while (byte := imageFile.read(1)) != "" and index < 9:
+#             x = int.from_bytes(byte, byteorder='little')
+#             print("[%d]%s" % (index, str(hex(x))))
+#             index += 1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# images = ['./data/image1.jpg', './data/image2.jpg', './data/image3.png',
+#           './data/compress1.rar','./data/compress2.rar']
+#
+# for image in images:
+#     print(image)
+#     with open(image, "rb") as imageFile:
+#         index = 1
+#         while (byte := imageFile.read(1)) != "" and index < 9:
+#             x = int.from_bytes(byte, byteorder='little')
+#             print("[%d]%s" % (index, str(hex(x))))
+#             index += 1
+
+# demo 97 二進問黨但讀寫  struc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#sample :
+# import struct
+#
+# # native byteorder
+# buffer = struct.pack("ihb", 1, 2, 3)
+# # b'\x01\x00\x00\x00\x02\x00\x03' : "i" integer(4 bytes), h: short(2 bytes) b:signedchar(1 bytes)
+# print(buffer)
+# print(repr(buffer))
+# print("unpack--------------")
+# print(struct.unpack("ihb", buffer))
+#
+# data = [1, 2, 3]
+# buffer = struct.pack("!ihb", *data) # b'\x00\x00\x00\x01\x00\x02\x03'  ("!ihb" : \x00 放前面)
+# print(repr(buffer))
+# print(struct.unpack("!ihb", buffer))
+# ---------------------------------------------------------
+# import struct
+#
+# output_file1 = open("data/myfile.bin", "wb")
+# output_file2 = open("data/my_file.ascii", "w")
+#
+# for i in range(0, 100):
+#     print("i=%d, pack=%s" % (i, repr(struct.pack('i', i))))
+#     output_file1.write(struct.pack('i', i))
+#     output_file2.write("%s\n" % str(i))
+# output_file1.close()
+# output_file2.close()
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import struct
+#
+# output_file1 = open("data/myfile.bin", "wb")
+# output_file2 = open("data/my_file.ascii", "w")
+#
+# for i in range(0, 100):
+#     print("i=%d, pack=%s" % (i, repr(struct.pack('i', i)))) # struct.pack 的format string "i" is int
+#     output_file1.write(struct.pack('i', i))
+#     output_file2.write("%s\n" % str(i))
+# output_file1.close()
+# output_file2.close()
+#
+#
+# input_file1 = open("data/myfile.bin", "rb")
+# data = input_file1.read(400)
+#
+# str2 = ""
+# str1 = ""
+# count1 = 0
+#
+# for ch in data :
+#     if ((count1 % 4) == 0) :
+#        print(ch)
+#        str2 += hex(ch) + " "
+#        str1 += str(ch) + ", "
+#     count1 = count1 + 1
+#
+# print(str2)
+# print(str1)
+#
+# input_file1.close()
+# #
+# https://www.reddit.com/.rss
+#
+# jupyter-notebook
+#
+# demo98 使用 XML : urllib 從遠方取得訊息 parse(): 來創建樹狀結構
+# demo98 : used Jupter Notebook-------------------------------
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import urllib.request
+# import xml.dom.minidom
+# URL = 'https://www.reddit.com/.rss'
+# file1 = urllib.request.urlopen(URL)
+# DOMTree = xml.dom.minidom.parse(file1)
+# file1.close()
+#
+# DOMTree
+#
+# file1
+#
+#
+# https://chrome.google.com/webstore/detail/view-xml/geikflidhgdlfgmfoheimkibmodlipeh?hl=zh-TW
+#
+#
+# collection = DOMTree.documentElement
+# if collection.hasAttribute("xmlns"):
+#     print("xmlns value=%s"%collection.getAttribute("xmlns"))
+# used Jupter Notebook~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# collection = DOMTree.documentElement
+# if collection.hasAttribute("xmlns"):
+#     print("xmlns value=%s, xmlns:media value=%s"%(collection.getAttribute("xmlns"),collection.getAttribute("xmlns:media")))
+#
+#
+# entries = collection.getElementsByTagName("entry")
+# for entry in entries:
+#     print("id=",entry.getElementsByTagName('id')[0].childNodes[0].data)
+#
+# used Jupter Notebook~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# entries = collection.getElementsByTagName("entry")
+# for entry in entries:
+#     print("~~~~~~~~~~~~~~~~~~~~~")
+#     print("id=",entry.getElementsByTagName('id')[0].childNodes[0].data)
+#     print("title=",entry.getElementsByTagName('title')[0].childNodes[0].data)
+#     print("last updated=",entry.getElementsByTagName('updated')[0].childNodes[0].data)
+#     authors = entry.getElementsByTagName("author")
+#     for author in authors:
+#         print("*** get an author***")
+#         print("author name=%s"%author.getElementsByTagName('name')[0].childNodes[0].data)
+#         print("author uri=%s"%author.getElementsByTagName('uri')[0].childNodes[0].data)
+#     print()
+# used Jupter Notebook~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# entries = collection.getElementsByTagName("entry")
+# for entry in entries:
+#     print("~~~~~~~~~~~~~~~~~~~~~")
+#     print("link=", entry.getElementsByTagName("link")[0].getAttribute("href"))
+#     print("id=",entry.getElementsByTagName('id')[0].childNodes[0].data)
+#     print("title=",entry.getElementsByTagName('title')[0].childNodes[0].data)
+#     print("last updated=",entry.getElementsByTagName('updated')[0].childNodes[0].data)
+#     authors = entry.getElementsByTagName("author")
+#     for author in authors:
+#         print("*** get an author***")
+#         print("author name=%s"%author.getElementsByTagName('name')[0].childNodes[0].data)
+#         print("author uri=%s"%author.getElementsByTagName('uri')[0].childNodes[0].data)
+#     print("content=",entry.getElementsByTagName('content')[0].childNodes[0].data)
+#     print()
+#
+
+## 12 偵錯與測試  ##
+# from calculator import Calculator
+# from calculator.Calculator import calculate
+# if __name__ == '__main__':
+#     calc = Calculator()
+#     result = calc.calculate("1+1+3+23-1")
+#     print(result)
+# (1) unit Test
+# Sample: -------------------
+# import unittest
+# import calculator
+#
+# class CalculatorTestCase(unittest.TestCase):
+#     def setUp(self):
+#         self.args = (3, 2)
+#         print("setUp-----------------------")
+#
+#     def tearDown(self):
+#         self.args = None
+#         print("tearDown-----------------------")
+#
+#     def test_plus(self):
+#         expected = 5
+#         result = calculator.plus(*self.args)
+#         self.assertEqual(expected, result)
+#         print(f"result ={result}--------------")
+#
+#     def test_minus(self):
+#         expected = 1
+#         result = calculator.minus(*self.args)
+#         self.assertEqual(expected, result)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import unittest
+#
+# def addBy1(x):
+#     return x + 1
+#
+# # unittest 模組提供了一個基礎類別 TestCase，你可以繼承它來建立新的測試案例
+# class MyTest(unittest.TestCase):
+#     def test(self):
+#         print("test running...")
+#         self.assertEqual(addBy1(3), 4)
+#
+#     def test2(self):
+#         print("test2 running...")
+#         self.assertEqual(addBy1(-1), 0)
+#
+#     def test3(self):
+#         print("test3 running...")
+#         self.assertEqual(addBy1(1), 2)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import unittest
+#
+#
+# def addBy1(x):
+#     return x + 1
+#
+#
+# class MyTest(unittest.TestCase):
+#     def setUp(self) -> None:
+#         print("prepare something")
+#         pass
+#     def tearDown(self) -> None:
+#         print("store and clean up")
+#         pass
+#     def test1(self):
+#         print("test1 running...")
+#         self.assertEqual(addBy1(0), 1)
+#
+#     def test2(self):
+#         print("test2 running...")
+#         self.assertEqual(addBy1(-1), 0)
+#
+#     def test3(self):
+#         print("test3 running...")
+#         self.assertEqual(addBy1(1), 2)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import unittest
+#
+# def addBy1(x):
+#     return x + 1
+#
+# class MyTest(unittest.TestCase):
+#     @classmethod
+#     def setUpClass(cls) -> None:     #
+#         print("1.one term setup")
+#     @classmethod
+#     def tearDownClass(cls) -> None:
+#         print("2.whole clean up")
+#
+#     def setUp(self):
+#         print("3.prepare something")
+#         pass
+#
+#     def tearDown(self):
+#         print("4.store and clean up")
+#         pass
+#
+#     def test1(self):
+#         print("5.test1 running...")
+#         self.assertEqual(addBy1(0), 1)
+#
+#     def test2(self):
+#         print("6.test2 running...")
+#         self.assertEqual(addBy1(-1), 0)
+#
+#     def test3(self):
+#         print("7.test3 running...")
+#         self.assertEqual(addBy1(1), 2)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import unittest
+#
+# def addBy1(x):
+#     return x + 1
+#
+# class MyTest(unittest.TestCase):
+#     @classmethod
+#     def setUpClass(cls) -> None:
+#         print("one term setup")
+#     @classmethod
+#     def tearDownClass(cls) -> None:
+#         print("whole clean up")
+#
+#     def setUp(self):
+#         print("prepare something")
+#         pass
+#
+#     def tearDown(self):
+#         print("store and clean up")
+#         pass
+#
+#     def test1(self):
+#         print("test1 running...")
+#         self.assertEqual(addBy1(0), 1)
+#
+#     def test2(self):
+#         print("test2 running...")
+#         self.assertEqual(addBy1(-1), 0)
+#
+#     @unittest.skip("will do it in later release")
+#     def test3(self):
+#         print("test3 running...")
+#         self.assertEqual(addBy1(1), 2)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# python -m unittest demo99.py
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import unittest
+#
+# def addBy1(x):
+#     return x + 1
+#
+# class MyTest(unittest.TestCase):
+#     @classmethod
+#     def setUpClass(cls) -> None:   # 建立類別之前執行
+#         print("1.one term setup")  # 第1執行
+#
+#     @classmethod
+#     def tearDownClass(cls) -> None: # 結束之後執行
+#         print("2.whole clean up")   #  # 第5執行
+#
+#     def setUp(self):    # 測試之前執行
+#         print("3.prepare something")  # 第2執行
+#         pass
+#
+#     def tearDown(self):  # 測試之後執行
+#         print("4.store and clean up")  # # 第4執行
+#         pass
+#     #
+#     def test1(self):
+#         print("5.test1 running...")   # # 第3執行
+#         self.assertEqual(addBy1(0), 1)   # 比較 addBy1(0) & 1 是否相等 ， 相等 is True
+#
+#     def test2(self):
+#         print("6.test2 running...")
+#         self.assertEqual(addBy1(-1), 1)
+#
+#     @unittest.skip("7.will do it in later release")
+#     def test3(self):
+#         print("test3 running...")
+#         self.assertEqual(addBy1(1), 2)
+#
+# if __name__ == '__main__':
+#     unittest.main()
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# (2) doc test
+# demo100--Run in CMD (if has : if __name__ == '__main__':)--
+# write in doctest.py & Run : python -m doctest -v doctest1.py---------------------------------
+# import doctest1
+#
+# def square(x):
+#     """Return the square of x
+#
+#     >>> square(2)
+#     4
+#     >>> square(-2)
+#     4
+#     """
+#     # :param x:
+#     # :return:
+#
+#     return x * x
+
+# if __name__ == '__main__':
+#     doctest.testmod()
+
+# demo101 偵錯--: 設中斷點，按 Debug(Shift+F9)， F8: step over， F7: step 進入涵式內-------------------------------
+#
+# def getDigit(x):
+#     returnDigit = 0
+#     while x > 0:
+#         # x = x / 10
+#         x = x // 10
+#         returnDigit += 1
+#     return returnDigit
+#
+#
+# print(getDigit(100))
+# print(getDigit(1000))
+# print(getDigit(10000))
+# print(getDigit(65536))
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# 13. 程序和執行緒 : Process and Thread ----------------------
+# (1) 程序 Process : 使用  multiprocessing 套件，主程式中呼叫許多子程序
+# demo 102 Run in CMD------------------------------------------------------
+# import multiprocessing
+#
+# def worker():
+#     print("worker is working...")
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for i in range(5):
+#         print("now executing part: %d" % i)
+#         p = multiprocessing.Process(target=worker)  # target=worker
+#         jobs.append(p)
+#         p.start()
+#     print("result=", jobs)
+
+# Answer : ----------------------------------------
+# now executing part: 0
+# now executing part: 1
+# now executing part: 2
+# now executing part: 3
+# now executing part: 4
+# result= [<Process name='Process-1' pid=14344 parent=23324 started>,
+#          <Process name='Process-2' pid=14664 parent=23324 started>,
+#          <Process name='Process-3' pid=5636 parent=23324 started>,
+#          <Process name='Process-4' pid=21408 parent=23324 started>,
+#          <Process name='Process-5' pid=23136 parent=23324 started>]
+# worker is working...
+# worker is working...
+# worker is working...
+# worker is working...
+# worker is working...
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import time
+#
+# def worker():
+#     print("worker is working...")
+#     time.sleep(5)
+#     print("work done")
+#
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for i in range(5):
+#         print("now executing part: %d" % i)
+#         p = multiprocessing.Process(target=worker()) # target=worker() 執行一個再一個
+#         jobs.append(p)
+#         p.start()
+#     print("result=", jobs)
+
+# Answer: ----------------------------------------------------
+# now executing part: 0
+# worker is working...
+# work done
+# now executing part: 1
+# worker is working...
+# work done
+# now executing part: 2
+# worker is working...
+# work done
+# now executing part: 3
+# worker is working...
+# work done
+# now executing part: 4
+# worker is working...
+# work done
+# result= [<Process name='Process-1' pid=21508 parent=20332 stopped exitcode=0>,
+# <Process name='Process-2' pid=13032 parent=20332 stopped exitcode=0>,
+# <Process name='Process-3' pid=1700 parent=20332 stopped exitcode=0>,
+# <Process name='Process-4' pid=16144 parent=20332 stopped exitcode=0>,
+# <Process name='Process-5' pid=17864 parent=20332 started>]
+
+# 使用 args 參數來傳入參數 : 參數必須以tuple 形式存入~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import time
+#
+# def worker(num):
+#     print("worker start as parameter:", num)
+#     time.sleep(5)
+#     print("worker done as parameter:", num)
+#     return
+#
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for i in range(5):
+#         print('now process part:%d' % i)
+#         p = multiprocessing.Process(target=worker, args=(i,))  # target=worker, args=(i,)
+#         jobs.append(p)
+#         p.start()
+#     print("jobs=", jobs)
+# # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import time
+#
+#
+# def worker(num, num2):
+#     print("worker start as parameter:", num, num2)
+#     time.sleep(5)
+#     print("worker done as parameter:", num, num2)
+#     return
+#
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for i in range(5):
+#         print('now process part:%d' % i)
+#         p = multiprocessing.Process(target=worker, args=(i, i ** 2))
+#         jobs.append(p)
+#         p.start()
+#     print("jobs=", jobs)
+
+#demo 104 用名字來檢查程序~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# (1)use : current_process() 函數來取得目前執行的程序
+# (2) use name 成員變數存取道程序的名字
+# import multiprocessing
+# import time
+#
+#
+# def worker():
+#     name = multiprocessing.current_process().name
+#     print(f'{name} worker starting')
+#     time.sleep(2)
+#     print(f'{name} worker exiting')
+#
+#
+# def my_service():
+#     name = multiprocessing.current_process().name
+#     print(f'{name} my_service starting')
+#     time.sleep(2)
+#     print(f'{name} my_service exiting')
+#
+#
+# if __name__ == '__main__':
+#     service = multiprocessing.Process(name="ftp_service", target=my_service)
+#
+#     worker_1 = multiprocessing.Process(name="worker_1", target=worker)
+#     worker_2 = multiprocessing.Process(target=worker)
+#     worker_3 = multiprocessing.Process(target=worker)
+#     worker_1.start()
+#     worker_2.start()
+#     worker_3.start()
+#     service.start()
+
+# Demo 105 常駐程序(daemon)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# (1) 當主程式終止時，有daemon 屬性的程式也會被終止
+# (2) 比繳 daemon vs 沒有daemon  的差異
+# import multiprocessing
+# import time
+#
+# def non_daemon():
+#     name = multiprocessing.current_process().name
+#     print(f'{name} start')
+#     time.sleep(5)
+#     print(f'{name} finish')
+#
+#
+# def is_daemon():
+#     name = multiprocessing.current_process().name
+#     print(f'{name} start')
+#     time.sleep(5)
+#     print(f'{name} finish')
+#
+#
+# if __name__ == '__main__':
+#     p1 = multiprocessing.Process(name="normal_process", target=non_daemon)
+#     p2 = multiprocessing.Process(name="daemon_process", target=is_daemon)
+#     p2.daemon = True    # setting daemon will be stopped when parent stop
+#     p2.start()          # default : daemon = False
+#     p1.start()
+#     time.sleep(2)
+#     print("main program finished")
+# Answer :
+# daemon_process start
+# normal_process start
+# main program finished  # daemon_process stop 不會finish
+# normal_process finish
+# ps: if __name__ == '__main__': time.sleep(6)  daemon_process 會先finish ，Answer is:
+# daemon_process start
+# normal_process start
+# normal_process finish
+# daemon_process finish
+# main program finished
+
+# demo 106 加了 join() 主程式會等 daemon 完成~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import time
+#
+#
+# def daemon():
+#     name = multiprocessing.current_process().name
+#     print(f"{name} start")
+#     time.sleep(6)
+#     print(f"{name} stop")
+#
+#
+# if __name__ == '__main__':
+#     d = multiprocessing.Process(name="primary_daemon", target=daemon)
+#     d.daemon = True
+#     d.start()
+#     print("program prepare to wait")
+#     d.join()    # join() 主程式會等 daemon 完成
+#     print("program terminated")
+# Answer :
+# program prepare to wait
+# primary_daemon start
+# primary_daemon stop
+# program terminated
+
+# demo107 is_alive()------------------------------------------
+# (1) join(timeout) 可以替代 thread 的程式增加timeout
+# (2) terminate() 可以停止程序
+# (3) 使用alive 檢查程序是否在執行執行 : is_alive()
+# import multiprocessing
+# import time
+#
+#
+# def daemon():
+#     name = multiprocessing.current_process().name
+#     print(f"{name} start")
+#     time.sleep(6)
+#     print(f"{name} stop")
+#
+#
+# def non_daemon():
+#     name = multiprocessing.current_process().name
+#     print(f"{name} start")
+#     print(f"{name} stop")
+#
+#
+# if __name__ == '__main__':
+#     p1 = multiprocessing.Process(name='daemon', target=daemon)
+#     p1.daemon = True
+#
+#     p2 = multiprocessing.Process(name='non-daemon', target=non_daemon)
+#     p2.daemon = False
+#
+#     print(f'[before start]d1={p1.is_alive()}, d2={p2.is_alive()}')       # [before start]d1=False, d2=False
+#     p1.start()
+#     p2.start()
+#
+#     print(f'[just after start]d1={p1.is_alive()}, d2={p2.is_alive()}')   # [just after start]d1=True, d2=True
+#     p1.join(1)    #timeout = 1 second
+#
+#     print(f'[after join 1 sec]d1={p1.is_alive()}, d2={p2.is_alive()}')   # [after join 1 sec]d1=True, d2=False
+#     time.sleep(1)
+#
+#     print(f'[after sleep 1 sec]d1={p1.is_alive()}, d2={p2.is_alive()}')  # [after sleep 1 sec]d1=True, d2=False
+#     p1.join()
+#
+#     print(f'[after join p1]d1={p1.is_alive()}, d2={p2.is_alive()}')      # [after join p1]d1=False, d2=False
+
+# Answer:
+# [before start]d1=False, d2=False
+# [just after start]d1=True, d2=True
+# daemon start
+# non-daemon start
+# non-daemon stop
+# [after join 1 sec]d1=True, d2=False
+# [after sleep 1 sec]d1=True, d2=False
+# daemon stop
+# [after join p1]d1=False, d2=False
+
+# demo 108 terminate()~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import time
+#
+#
+# def daemon():
+#     name = multiprocessing.current_process().name
+#     print(f"{name} start")
+#     time.sleep(6)
+#     print(f"{name} stop")
+#
+#
+# def non_daemon():
+#     name = multiprocessing.current_process().name
+#     print(f"{name} start")
+#     time.sleep(2)
+#     print(f"{name} stop")
+#
+# if __name__ == '__main__':
+#     p1 = multiprocessing.Process(name='daemon', target=daemon)
+#     p1.daemon = True
+#     p2 = multiprocessing.Process(name='non-daemon', target=non_daemon)
+#     p2.daemon = False
+#
+#     print(f'[before start]p1={p1.is_alive()}, p2={p2.is_alive()}')   # [before start]p1=False, p2=False
+#     p1.start()
+#     p2.start()
+#     print(f'[after start]p1={p1.is_alive()}, p2={p2.is_alive()}')    # [after start]p1=True, p2=True
+#
+#     p1.terminate()
+#     p2.terminate()
+#     print(f'[just after terminate]p1={p1.is_alive()}, p2={p2.is_alive()}')   # [just after terminate]p1=True, p2=True
+#
+#     time.sleep(1)
+#     print(f'[ after terminate 1 second]p1={p1.is_alive()}, p2={p2.is_alive()}') # [ after terminate 1 second]p1=False, p2=False
+# # Answer:
+# [before start]p1=False, p2=False
+# [after start]p1=True, p2=True
+# [just after terminate]p1=True, p2=True
+# [ after terminate 1 second]p1=False, p2=False
+
+# demo109 ----------------------------------------------
+# import multiprocessing
+# import time
+#
+# def demo_worker():
+#     print("start worker")
+#     time.sleep(1)
+#     print("stop worker")
+#
+# if __name__ == '__main__':
+#     p1 = multiprocessing.Process(target=demo_worker)
+#     print("before start:",p1,p1.is_alive())  # before start: <Process name='Process-1' parent=9908 initial> False
+#     p1.start()
+#     print("after start:", p1, p1.is_alive()) # after start: <Process name='Process-1' pid=16096 parent=9908 started> True
+#     # out of control path
+#     # p1.terminate()
+#     # print("just after terminate:",p1,p1.is_alive())
+#     # time.sleep(1)
+#     # print("after terminate 1 sec:",p1,p1.is_alive())
+#
+#     # normal path
+#     p1.join()
+#     print("after join",p1,p1.is_alive()) # after join <Process name='Process-1' pid=16096 parent=9908 stopped exitcode=0> False
+# Answer:
+# before start: <Process name='Process-1' parent=9908 initial> False
+# after start: <Process name='Process-1' pid=16096 parent=9908 started> True
+# start worker
+# stop worker
+# after join <Process name='Process-1' pid=16096 parent=9908 stopped exitcode=0> False
+
+# demo110 在join 之後可以取得回傳值~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 如果例外發生，會產生執行時期錯誤 runtime error
+#
+# import multiprocessing
+# import sys
+# import time
+#
+# def exit_error():
+#     sys.exit(1)
+#
+# def exit_ok():
+#     return
+#
+# def return_value():
+#     return 1
+#
+# def raises():
+#     raise RuntimeError("There was an error!")
+#
+# def terminated():
+#     time.sleep(3)
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for f in [exit_error, exit_ok, return_value, terminated]:
+#         print("start process for", f.__name__)
+#         j = multiprocessing.Process(target=f, name=f.__name__)
+#         jobs.append(j)
+#         j.start()
+#     jobs[-1].terminate()
+#     for j in jobs:
+#         j.join()
+#         print(f'{j.name} exit code={j.exitcode}')
+# Ans: --------------------------------------------
+# start process for exit_error
+# start process for exit_ok
+# start process for return_value
+# start process for terminated
+# exit_error exit code=1
+# exit_ok exit code=0
+# return_value exit code=0
+# terminated exit code=-15
+# demo114~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import multiprocessing
+# import sys
+# import time
+#
+#
+# def exit_error():
+#     sys.exit(1)
+#
+#
+# def exit_ok():
+#     return
+#
+#
+# def return_value():
+#     return 1
+#
+#
+# def raises():
+#     raise RuntimeError("There was an error!")
+#
+#
+# def terminated():
+#     time.sleep(3)
+#
+#
+# if __name__ == '__main__':
+#     jobs = []
+#     for f in [exit_error, exit_ok, return_value, terminated]:
+#         print("start process for", f.__name__)
+#         j = multiprocessing.Process(target=f, name=f.__name__)
+#         jobs.append(j)
+#         j.start()
+#     jobs[-1].terminate()
+#     for j in jobs:
+#         j.join()
+#         print(f'{j.name} exit code={j.exitcode}')
+#
+#     for f in [raises]:
+#         print("starting process for", f.__name__)
+#         j = multiprocessing.Process(target=f, name=f.__name__)
+#         jobs.append(j)
+#         j.start()
+# Ans:
+# start process for exit_error
+# start process for exit_ok
+# start process for return_value
+# start process for terminated
+# exit_error exit code=1
+# exit_ok exit code=0
+# return_value exit code=0
+# terminated exit code=-15
+# starting process for raises
+# Process raises:
+# Traceback (most recent call last):
+#   File "C:\Python\Python38\lib\multiprocessing\process.py", line 315, in _bootstrap
+#     self.run()
+#   File "C:\Python\Python38\lib\multiprocessing\process.py", line 108, in run
+#     self._target(*self._args, **self._kwargs)
+#   File "C:\Users\mikal\PycharmProjects\PythonBible\ch01_Python_Introduction\CH01.py", line 3704, in raises
+#     raise RuntimeError("There was an error!")
+# RuntimeError: There was an error!
+
+# sys.stdout.flush()注释的话，你就只能等到程序执行完毕，屏幕上会一次性输出0，1，2，3，4。 如果你加上
+# sample:-----------------------------
+# import time
+# import sys
+#
+# for i in range(10):
+#     print(i)
+#     if i == 5:
+#         print("Flushing buffer")
+#         sys.stdout.flush()
+#     time.sleep(1)
+
+# for i in range(10):
+#     print(i,)
+#     if i == 5:
+#         print("Flushing buffer")
+#         sys.stdout.flush()
+
+# for x in range(10000):
+#     print ("HAPPY >> %s <<\r" % str(x))
+#     sys.stdout.flush()
+# -----------------------------------------
+# demo111 : 在使用程序時可以有更詳細的輸出訊息 ----------------------------
+# import logging
+# import multiprocessing
+# import sys
+#
+# def worker():
+#     print("doming some work")
+#     sys.stdout.flush()   # 寫出訊息
+#
+# if __name__ == '__main__':
+#     multiprocessing.log_to_stderr(logging.DEBUG)
+#     p = multiprocessing.Process(target=worker)
+#     print("prepare start process")
+#     p.start()
+#     print("before join process")
+#     p.join()
+#     print('after join process')
+#
+#Ans:
+# prepare start process
+# before join process
+# doming some work
+# after join process
+# [INFO/Process-1] child process calling self.run()
+# [INFO/Process-1] process shutting down
+# [DEBUG/Process-1] running all "atexit" finalizers with priority >= 0
+# [DEBUG/Process-1] running the remaining "atexit" finalizers
+# [INFO/Process-1] process exiting with exitcode 0
+# [INFO/MainProcess] process shutting down
+# [DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+# [DEBUG/MainProcess] running the remaining "atexit" finalizers
+
+# demo112 自訂日誌 :使用 getLogger 取得日誌並設定它~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import logging
+# import multiprocessing
+# import sys
+#
+# def worker():
+#     print("doming some work")
+#     sys.stdout.flush()
+#
+# if __name__ == '__main__':
+#     multiprocessing.log_to_stderr()
+#     logger = multiprocessing.get_logger()
+#     logger.setLevel(logging.INFO)
+#
+#     p = multiprocessing.Process(target=worker)
+#     print("prepare start process")
+#     p.start()
+#     print("before join process")
+#     p.join()
+#     print('after join process')
+
+# Ans:
+# prepare start process
+# before join process
+# doming some work
+# after join process
+# [INFO/Process-1] child process calling self.run()
+# [INFO/Process-1] process shutting down
+# [INFO/Process-1] process exiting with exitcode 0
+# [INFO/MainProcess] process shutting down
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# 執行續 (Thread)#
+#-------------- #
+## demo 113 使用Thread 的子類別，來產生一個執行緒
+# import threading
+# import time
+#
+# exitFlag = 0
+#
+#
+# class myThread(threading.Thread):
+#     def __init__(self, threadID, name, counter):
+#         threading.Thread.__init__(self)
+#         self.threadID = threadID
+#         self.name = name
+#         self.coutner = counter
+#
+#
+# print("start in main thread")
+# thread1 = myThread(1, "Thread-1", 1)
+# thread2 = myThread(2, "Thread-2", 2)
+#
+# thread1.start()
+# thread2.start()
+# print("thread return, prepare to join")
+# thread1.join()
+# thread2.join()
+# print("Main thread complete, prepare to quit")
+# Ans:
+# start in main thread
+# thread return, prepare to join
+# Main thread complete, prepare to quit
+
+# demo 114~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import threading
+# import time
+#
+# exitFlag = 0
+
+#
+# class myThread(threading.Thread):
+#     def __init__(self, threadID, name, counter):
+#         threading.Thread.__init__(self)
+#         self.threadID = threadID
+#         self.name = name
+#         self.coutner = counter
+#
+#     def run(self) -> None:
+#         print("start a thread:", self.name)
+#         time.sleep(2)
+#         print("thread finished:", self.name)
+#
+# print("start in main thread")
+# thread1 = myThread(1, "Thread-1", 1)
+# thread2 = myThread(2, "Thread-2", 2)
+#
+# thread1.start()
+# thread2.start()
+# print("thread return, prepare to join")
+# # thread1.join()
+# # thread2.join()
+# print("Main thread complete, prepare to quit")
+
+# ans:
+# start in main thread
+# start a thread: Thread-1
+# start a thread: Thread-2
+# thread return, prepare to join
+# Main thread complete, prepare to quit
+# thread finished: Thread-2
+# thread finished: Thread-1
+
+# demo115~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# import threading
+# import time
+# from builtins import next
+#
+# exitFlag = 0
+#
+# class myThread(threading.Thread):
+#     def __init__(self, threadID, name, counter):
+#         threading.Thread.__init__(self)
+#         self.threadID = threadID
+#         self.name = name
+#         self.coutner = counter
+#
+#     def run(self) -> None:
+#         global exitFlag
+#         print("start a thread:", self.name)
+#         print("current exitFlag=",exitFlag)
+#         exitFlag += 1
+#         time.sleep(2)
+#         print("thread finished:", self.name)
+#
+# print("start in main thread")
+# thread1 = myThread(1, "Thread-1", 1)
+# thread2 = myThread(2, "Thread-2", 2)
+#
+# thread1.start()
+# thread2.start()
+# print("thread return, prepare to join")
+# thread1.join()
+# thread2.join()
+# print("Main thread complete, prepare to quit")
+# Ans :
+# start in main thread
+# start a thread: Thread-1
+# current exitFlag= 0
+# start a thread: Thread-2
+# current exitFlag= 1
+# thread return, prepare to join
+# thread finished: Thread-1
+# thread finished: Thread-2
+# Main thread complete, prepare to quit
+
+# ---------------#
+#Iterator(迭代器) #
+# ---------------#
+# demo1 (1) iter()  and  next() -----------------------------
+# fruits = ["apple","orange","banana","grape"]
+# fruits_iterator = iter(fruits)
+# for i in range(4):
+#     print(next(fruits_iterator))
+# next(fruits_iterator)  # StopIteration exception
+
+# Generator (生成器) -------------------
+# # demo2 "yield" -----------------------
+# def my_gen():
+#     n=1
+#     print('This is printed first')
+#     yield n
+#     n+=1
+#     print('This is printed second')
+#     yield n
+#     n += 1
+#     print('This is printed at last')
+#     yield n
+#
+# for item in my_gen():
+#     print(item)
+# print("--------------------")
+# a= my_gen()
+# next(a)
+# next(a)
+# next(a)
+
+# demo3 : Decorator :lambda
+# 傳統 --------------
+# def add_one(num):
+#     return num+1
+#
+# add1 = add_one(10)
+# print(add1)
+# # 改寫 lambda ---------------
+# add2 =lambda x:x+1
+# print(add2(10))
+
+# demo4 nested Function --------------------------
+# def add_one(num):
+#     def plus_one(num):
+#         return num+1
+#     ans = plus_one(num)
+#     return ans
+# print(f'add_one(10) ={add_one(10)}')
+
+#demo5 function 當作引數傳遞 ----------------
+
+# def add_one(num):
+#     return num+1
+#
+# def myfunc(func):
+#     num = 12
+#     return func(num)
+#
+# print(myfunc(add_one))
+
+
+
+
+
+
+

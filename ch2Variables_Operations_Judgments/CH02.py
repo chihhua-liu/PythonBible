@@ -162,34 +162,50 @@
 #            print("Sorry Master,I can't understand what you say.")
 # print("ok, I will quit. See you again my master ~~")
 # t5 -----------------------------------------------
-print('*'*15)
-for x in range(6):
-   print('*',end='')
-   print(' '*13,end='')
-   print('*')
-print('*    Hello    *')
-for x in range(6):
-   print('*',end='')
-   print(' '*13,end='')
-   print('*')
-print('*'*15)
-# t6 Lab4-7.py-------------------------------------------------
-import random
-ans = random.randint(1,100)
-for i in range(1,11):
-   youans = int(input(str(i)+' You guess: '))
-   if youans > ans:
-       print('guess less')
-   elif youans < ans:
-       print('guess more')
-   else:
-       print('Correct !!')
-       break
-print('End')
+# print('*'*15)
+# for x in range(6):
+#    print('*',end='')
+#    print(' '*13,end='')
+#    print('*')
+# print('*    Hello    *')
+# for x in range(6):
+#    print('*',end='')
+#    print(' '*13,end='')
+#    print('*')
+# print('*'*15)
+# # t6 Lab4-7.py-------------------------------------------------
+# import random
+# ans = random.randint(1,100)
+# for i in range(1,11):
+#    youans = int(input(str(i)+' You guess: '))
+#    if youans > ans:
+#        print('guess less')
+#    elif youans < ans:
+#        print('guess more')
+#    else:
+#        print('Correct !!')
+#        break
+# print('End')
 
+# Bases 底數 ------------------------
+a = 0x10
+print('0x10 (16 進位)=',a)
+b = 0b10
+print('0b10 (2進位)=',b)
+c = 0o10
+print('0o10 (8進位)=',c)
 
+# 轉換進位 -------------------
+value =65
+print('2進位 65 =', bin(65))
+print('8進位 65 =', oct(65))
+print('16進位 65 =', hex(65))
 
+# ASCII code 轉換------------------
+a = 65
+b = chr(65)
+print('chr(65) =', chr(65))
 
-
+print("ord('A')= ", ord('A'))
 
 
