@@ -37,8 +37,8 @@
 #     # debug =True 表示可以直接 realtime 修改程式，API 不用ctrl +C 中斷
 #     app.run(host='0.0.0.0', port=3000, debug=True)
 
-import cv2
-#print( cv2.__version__ )
-
-img = cv2.imread("01.jpg")
-cv2.imshow("MyPicture", img)
+# import cv2
+# #print( cv2.__version__ )
+#
+# img = cv2.imread("01.jpg")
+# cv2.imshow("MyPicture", img)

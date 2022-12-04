@@ -1,6 +1,6 @@
 # # 1.(15-1) Flask 程式基本架構 pip install flask --------------------
 # # from flask import Flask
-# # app = Flask(__name__)
+# # app = Flask(__name__)  # Creste Flask object
 # # 路由一
 # # 路由二
 # # ...
@@ -71,61 +71,61 @@
 #
 # if __name__ == '__main__':
 #     app.run()
-
-# # 5(15-2)  use template : Flask 提供template 功能，可以直接顯示HTML file-------------------------
-# # from flask import render_template
-# # render_template('網頁檔案名稱')
-#######################
+#########################################################################
+# # 5(15-2)  use template : Flask 提供template 功能，可以直接顯示HTML file  #
+# # from flask import render_template                                   #
+# # render_template('網頁檔案名稱')                                       #
+########################################################################
 # # test4 template.py #執行方式請參考test1，記得templates 目錄要copy to D:/flask -----------
-#######################
+# from flask import render_template
 # from flask import Flask
 # app = Flask(__name__)
-# from flask import render_template
+#
 # @app.route('/hello')
 # def hello():
 #     return render_template('hello.html')
 # if __name__ == '__main__':
 #     app.run()
-# # 6.傳遞參數及變數給網頁檔:　---------------------------------------------------
-# # @app.route('/hello/<string:name>')
-# # render_template('網頁檔案名稱', **locals())  **locals() 傳送所有參數及區域變數
+
+# 6.傳遞參數及變數給網頁檔:　---------------------------------------------------
+# @app.route('/hello/<string:name>')
+# render_template('網頁檔案名稱', **locals())  **locals() 傳送所有參數及區域變數
 ########################
 # # test5 template2.py # 執行方式請參考test1 ------------------------------------
 ########################
-# from flask import Flask
-# app = Flask(__name__)
 # from flask import render_template
 # from datetime import datetime
+# from flask import Flask
+# app = Flask(__name__)    # Creste Flask object
+#
 # @app.route('/hello/<string:name>')
 # def hello(name):
 #     now = datetime.now()
 #     test = 3
 #     # **locals() 將name & now 傳進hello2.html ，hello2.html  用{{name}}  {{now}}接收顯示
-#     return render_template('hello2.html', **locals())
+#     return render_template('hello2.html', **locals())  # name, now,test 所有參數都傳到網頁檔: hello2.html
 #
 # if __name__ == '__main__':
 #     app.run()
 # # ps : browser 輸入 http://127.0.0.1:5000/hello/mika -------------------
 # # hello2.html : 網頁用 {{name}} 接收
-# < !DOCTYPE
-# html >
-# < html >
-# < head >
-# < meta
-# charset = 'utf-8' >
-# < title > 傳送參數模版 < / title >
-# < / head >
-# < body >
-# < h1 > Flask
-# 網站 < / h1 >
-# < h2 > {{name}}，歡迎光臨！ < / h2 >
-# < h4 > 現在時刻：{{now}} < / h4 >
-# < / body >
-# < / html >
-#
-# # 7.網頁檔使用靜態檔案 在網頁中使用<static> 資料夾中檔案語法--------------------------
-# # {{url_for('static',filename=靜態檔案名稱)}} :ex: {{url_for('static',filename='ball.png')}}
-#########################
+# <!DOCTYPE html>
+# <html>
+# <head>
+#     <meta charset='utf-8'>
+#     <title>傳送參數模版</title>
+# </head>
+# <body>
+# 	<h1> Flask 網站 </h1>
+#     <h2> {{name}}，歡迎光臨！ </h2>
+#     <h4> 現在時刻：{{now}} </h4>
+#     <h4> test：{{test}} </h4>
+# </body>
+# </html>
+########################################################
+# # 7.網頁檔使用靜態檔案 在網頁中使用<static> 資料夾中檔案語法  #
+# #{{url_for('static',filename=靜態檔案名稱)}} :ex: {{url_for('static',filename='ball.png')}} #
+############################################################################################
 # # test6  template3.py##  執行方式請參考test1--------------------------------
 #########################
 # from flask import Flask
@@ -154,7 +154,7 @@
 # < / head >
 # < body >
 # < h1 > Flask 網站
-# < img src = "{{ url_for('static', filename='ball.png') }}"
+# < img src = "{{ url_for('static', filename='ball.png') }}"  # 'static' is 目錄
 # width = "32" height = "32" / >
 # < / h1 >
 # < h2 > {{name}}，歡迎光臨！ < / h2 >
@@ -204,24 +204,28 @@
 # < / body >
 # < / html >
 ############
-# # test8 ##  if:{% if score>=90 %} for:{% for person in persons%} : show.py
+# # test8 ##  for:{% for person in persons%} : show.py
+# {% if score>=90 %}
+#     優等
+# {% elif score>=80 %}
+#     甲等
+# {% else %}
+#     乙等
 ############
-from  flask import Flask
-
-app = Flask(__name__)
-
-from flask import render_template
-
-@app.route('/show')
-def show():
-    person1 = {"name": "Amy", "phone": "049-1234567", "age": 20}
-    person2 = {"name": "Jack", "phone": "02-4455666", "age": 25}
-    person3 = {"name": "Nacy", "phone": "04-9876543", "age": 17}
-    persons = [person1, person2, person3]
-    return render_template('show.html', **locals())
-
-if __name__ == '__main__':
-    app.run()
+# from flask import render_template
+# from  flask import Flask
+# app = Flask(__name__)
+#
+# @app.route('/')
+# def show():
+#     person1 = {"name": "Amy", "phone": "049-1234567", "age": 20}   # 傳字典
+#     person2 = {"name": "Jack", "phone": "02-4455666", "age": 25}
+#     person3 = {"name": "Nacy", "phone": "04-9876543", "age": 17}
+#     persons = [person1, person2, person3]
+#     return render_template('show.html', **locals())
+#
+# if __name__ == '__main__':
+#     app.run()
 
 # # show.html --------------------------
 # < !DOCTYPE
@@ -247,7 +251,7 @@ if __name__ == '__main__':
 #
 # # 9 以GET & POST 傳送資料 use request module : from flask import request
 # #  (1) GET 傳送的語法: 網址?參數1=值1& 參數2=值2& 參數3=值3 ...
-# #       ex : http://127.0.0.1:5000/test?name=david&tel=0936701738
+# #       ex : http://127.0.0.1:5000/test?name=david&city=高雄&tel=0936701738
 # #  (2) @app.route('/網頁路徑', methods=['GET'])
 # #  (3) use request module : from flask import request ->request.args.get('參數名稱')
 # #  (4) GET 是將要傳輸的參數置於網址後面(顯示參數)
@@ -255,22 +259,20 @@ if __name__ == '__main__':
 # # test9 : GET get1.py  ---------------------
 # from flask import Flask
 # from flask import request
-#
-# app = Flask(__name__)
-#
 # from flask import render_template
-#
+# app = Flask(__name__)
 #
 # @app.route('/get1', methods=['GET'])
 # def get1():
 #     name = request.args.get('name')
 #     city = request.args.get('city')
+#     tel = request.args.get('tel')
 #     return render_template('get1.html', **locals())
 #
 #
 # if __name__ == '__main__':
 #     app.run()
-#
+
 # # # get1.html ---------------------------
 # < !DOCTYPE
 # html >
@@ -294,32 +296,32 @@ if __name__ == '__main__':
 # < / html >
 #
 # # test10 : POST ，post1.py ---------------------------
-# from flask import Flask
-# from flask import request
-#
-# app = Flask(__name__)
-#
-# from flask import render_template
-#
-#
-# @app.route('/post1')
-# def post1():
-#     return render_template('post1.html')
-#
-#
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     username = request.values['username'] \
-#             password = request.values['password']
-#     if username == 'david' and password == '1234':
-#         return '歡迎光臨本網站！'
-#     else:
-#         return '帳號或密碼錯誤！'
-#
-#
-# if __name__ == '__main__':
-#     app.run()
-#
+from flask import Flask
+from flask import request
+
+app = Flask(__name__)
+
+from flask import render_template
+
+
+@app.route('/post1')
+def post1():
+    return render_template('post1.html')
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    username = request.values['username']
+    password = request.values['password']
+    if username == 'david' and password == '1234':
+        return '歡迎光臨本網站！'
+    else:
+        return '帳號或密碼錯誤！'
+
+
+if __name__ == '__main__':
+    app.run()
+
 # # post1.html ------------------------------
 # < !DOCTYPE
 # html >
